@@ -5,7 +5,7 @@ const HomeSignUpPostController = require("../controllers/HomeSignUpPostControlle
 const router = require("express").Router();
 
 router.get(["/", "/index.html"], (req, res) => {
-	res.render("index");
+	res.render("login");
 });
 router.get("/register.html", (req, res) => {
 	res.render("register");
