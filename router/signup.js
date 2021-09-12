@@ -6,7 +6,7 @@ const router = require("express").Router();
 router.get("/register", (req, res) => {
 	res.render("register");
 });
-router.post("/signup", async (req, res) => {
+router.post("/", async (req, res) => {
 	
 	const {
 		email,
@@ -18,7 +18,7 @@ const users = req.db.users;
 
 	try {
 	const user = await SignUpValidation.validateAsync(req.body)
-	console.log(req.body)
+	
 		
 	const data = await users.findOne({email: user.email})
 
@@ -34,7 +34,7 @@ const users = req.db.users;
 	}
 	} catch (error) {
 		console.log(error)
-		res.render("login", {error})
+		res.render("/", {error})
 	}
 
 	

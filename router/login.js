@@ -1,5 +1,9 @@
 const router = require("express").Router();
 
+router.get(["/", "/index.html"], (req, res) => {
+	res.render("login");
+});
+
 router.post("/", async (req, res) => {
 	const {
 		email,
@@ -40,6 +44,6 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = {
-    path: "/login",
+    path: "/",
     router
 }
