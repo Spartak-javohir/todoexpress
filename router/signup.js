@@ -15,7 +15,7 @@ router.post("/signup", async (req, res) => {
 	} = req.body; 
 
 const users = req.db.users;
-console.log(users)
+
 	try {
 	const user = await SignUpValidation.validateAsync(req.body)
 	console.log(req.body)

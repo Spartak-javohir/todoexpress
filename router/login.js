@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 		return;
 	}
 
-	if (!(await compareCrypt(user.password, password))) {
+	if (!(await compareCrypt(users.password, password))) {
 		res.render("login", {
 			error: "Password is incorrect",
 		});
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 	}
 
 	const token = createToken({
-		user_id: user._id,
+		user_id: users._id,
 	});
 
 	res.cookie("token", token).redirect("/index");
