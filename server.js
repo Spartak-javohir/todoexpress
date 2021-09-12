@@ -28,7 +28,8 @@ server.set("view engine", "ejs");
 		});
 	} catch (error) {
 		console.log(error);
-	} finally {
-		routes(server);
-	}
+	} 
 })();
+// finally {
+//     routes(server);
+// }
