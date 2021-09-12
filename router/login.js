@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
 		user_id: user._id,
 	});
 
-	res.cookie("token", token).redirect("/profile");
+	res.cookie("token", token).redirect("/index");
 });
 
 module.exports = {
