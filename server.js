@@ -34,6 +34,3 @@ server.set("view engine", "ejs");
         routes(server);
     }
 })();
-// finally {
-//     routes(server);
-// }

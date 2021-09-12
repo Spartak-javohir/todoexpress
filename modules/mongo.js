@@ -8,7 +8,7 @@ async function mongodb() {
 	try {
 		await client.connect();
 
-		const db = await client.db("level_up");
+		const db = await client.db("To_Do_List");
 
 		const users = db.collection("users");
 
