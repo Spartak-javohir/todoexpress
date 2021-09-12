@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
 	} = req.body;
 	const users = await req.db.users
 	if (!(email && password)) {
-		res.render("index", {
+		res.render("register", {
 			error: "Email or Password not found",
 		});
 		return;
@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 	});
 
 	if (user) {
-		res.render("index", {
+		res.render("register", {
 			error: "Email already exists",
 		});
 		return;
