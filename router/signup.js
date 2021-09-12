@@ -1,12 +1,14 @@
 const router = require("express").Router();
 
 router.post("/", async (req, res) => {
+	console.log();
 	const {
 		email,
-		password
+		password,
+		name
 	} = req.body;
 	const users = await req.db.users
-	if (!(email && password)) {
+	if (!(email && password&& name)) {
 		res.render("register", {
 			error: "Email or Password not found",
 		});

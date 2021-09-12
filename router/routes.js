@@ -6,4 +6,7 @@ module.exports = function (server) {
 	server.use(HomeRoute.path, HomeRoute.router);
 	server.use(login.path, login.router)
 	server.use(signup.path, signup.router)
+	server.use((req,res)=>{
+		res.render('error')
+	})
 };
