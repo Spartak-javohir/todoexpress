@@ -5,7 +5,7 @@ router.post("/", async (req, res) => {
 		email,
 		password
 	} = req.body;
-	const users = await req.db.users 
+	const users = await req.db.users
 	if (!(email && password)) {
 		res.render("index", {
 			error: "Email or Password not found",
