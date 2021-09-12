@@ -1,7 +1,7 @@
 const express = require("express");
 const server = express();
 const PORT = process.env.PORT || 8888;
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const mongodb = require("./modules/mongo");
 const routes = require("./router/routes");
