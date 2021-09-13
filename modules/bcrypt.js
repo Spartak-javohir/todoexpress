@@ -6,7 +6,7 @@ async function generateCrypt(data) {
 	return await hash(data, salt);
 }
 
-async function compareHash(data ,hash) {
+async function compareHash(data, hash) {
 	return compareSync(data, hash);
 }
 
