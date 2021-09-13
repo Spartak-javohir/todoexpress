@@ -13,6 +13,8 @@ router.post("/", async (req, res) => {
 	} = req.body;
 	const users = await req.db.users
 
+	
+
 	if (!(email && password)) {
 		res.render("/", {
 			error: "Email or Password not found",
@@ -42,7 +44,7 @@ router.post("/", async (req, res) => {
 		user_id: users._id,
 	});
 
-	res.cookie("token", token).redirect("/index");
+	res.cookie("token", token).redirect("/profile");
 });
 router.post("/", HomeLoginPostController);
 

@@ -5,9 +5,14 @@
 <section class="pt-4 ">
 	<div class="container">
 		<div class="card p-2 mx-auto" style="width: 38rem;">
+			<%var error%>
 			<ul class="list-group list-group-flush">
 			  <li class=" my-1 text-center list-group-item">Sign Up </li>
-			  <%=error%>
+			  <% if(error) {%>
+				<div class="alert alert-danger">
+					<%= error %>
+				</div>
+			<% } %>
 			  <form class="d-flex flex-column" method="POST" enctype="application/x-www-form-urlencoded" action="/signup">
 				<input class="my-1 input form-control" type="text" name="name" required placeholder="Enter your name" id="">
 				<input class="my-1 input form-control" required placeholder="Email"name="email" type="email">
