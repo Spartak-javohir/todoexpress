@@ -4,7 +4,9 @@ const router = require("express").Router();
 const { LoginValidation } = require("../modules/validations");
 
 router.get(["/", "/login.html"], (req, res) => {
-	res.render("login");
+	res.render("login",{
+        user: req.user,
+    });
 });
 
 

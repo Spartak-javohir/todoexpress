@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const mongodb = require("./modules/mongo");
 const routes = require("./router/routes");
+const AuthUserMiddleware = require("./controllers/AuthUserMiddleware");
 
 
 server.listen(PORT, () => {
@@ -28,6 +29,7 @@ server.set("view engine", "ejs");
 			req.db = db;
 			next();
 		});
+		server.use(AuthUserMiddleware)
 	} catch (error) {
 		console.log(error);
 	} finally {
