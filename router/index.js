@@ -4,7 +4,9 @@ const HomeSignUpPostController = require("../controllers/HomeSignUpPostControlle
 
 const router = require("express").Router();
 
-
+router.get("/index", (req, res)=>{
+	res.render("index")
+})
 
 
 

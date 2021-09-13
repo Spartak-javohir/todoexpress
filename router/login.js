@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
 	const users = await req.db.users
 
 	if (!(email && password)) {
-		res.render("login", {
+		res.render("/", {
 			error: "Email or Password not found",
 		});
 		return;
@@ -23,14 +23,14 @@ router.post("/", async (req, res) => {
 	});
 
 	if (!user) {
-		res.render("login", {
+		res.render("/", {
 			error: "User not found",
 		});
 		return;
 	}
 
 	if (!(await compareCrypt(users.password, password))) {
-		res.render("login", {
+		res.render("/", {
 			error: "Password is incorrect",
 		});
 		return;
