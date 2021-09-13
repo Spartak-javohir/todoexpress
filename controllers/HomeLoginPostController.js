@@ -20,7 +20,9 @@ module.exports = async function HomeLoginPostController(req, res) {
 		const token = await createToken({
 			id: user._id,
 		});
-
+		if(!req.cookies.token) {
+			res.redirect("/");
+		}
 		let profile = await req.db.usersinfo.insertOne({
 			email: data.email,
 		});
