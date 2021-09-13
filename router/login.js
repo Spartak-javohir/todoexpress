@@ -1,50 +1,41 @@
 const HomeLoginPostController = require("../controllers/HomeLoginPostController");
 const {compareHash} = require("../modules/bcrypt")
 const router = require("express").Router();
+const { LoginValidation } = require("../modules/validations");
 
 router.get(["/", "/login.html"], (req, res) => {
 	res.render("login");
 });
 
 router.post("/", async (req, res) => {
-	const {
-		email,
-		password
-	} = req.body;
 	const users = await req.db.users
+	try {
 
+		const user = await LoginValidation.validateAsync(req.body)
+		const email = await users.findOne({email: user.email})
+		// const password = await users.findOne({})
+		if (!email) {
+			throw new Error("Email error corrected!")
+		}else if (!(await compareHash(user.password, users.password))) {
+			throw new Error("Password is incorrect!")
+		}else{
+			const token = createToken({
+				user_id: users._id,
+			});
+		
+			res.cookie("token", token).redirect("/profile");
+			res.redirect("/index");
 
-
-	if (!(email && password)) {
-		res.render("/", {
-			error: "Email or Password not found",
-		});
-		return;
+		}
+		
+	} catch (error) {
+		console.log(error)
+		res.render("login", {error})
 	}
+	
 
-	let user = await users.findOne({
-		email: email.toLowerCase(),
-	});
-
-	if (!user) {
-		res.render("/", {
-			error: "User not found",
-		});
-		return;
-	}
-
-	if (!(await compareHash(users.password, password))) {
-		res.render("/", {
-			error: "Password is incorrect",
-		});
-		return;
-	}
-
-	const token = createToken({
-		user_id: users._id,
-	});
-
-	res.cookie("token", token).redirect("/profile");
+	
+	
 });
 router.post("/", HomeLoginPostController);
 
