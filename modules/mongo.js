@@ -11,9 +11,11 @@ async function mongodb() {
 		const db = await  client.db("ToDoList");
 
 		const users = db.collection("users");
+		const usersinfo = db.collection("usersinfo");
 
 		return {
 			users,
+			usersinfo,
 		};
 	} catch (error) {
 		console.log("MongoDB Error", error);
