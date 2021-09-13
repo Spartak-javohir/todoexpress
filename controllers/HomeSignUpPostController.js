@@ -8,7 +8,7 @@ module.exports = async function HomeSignUpPostController(req, res) {
 		let user = await req.db.users.findOne({
 			email: data.email.toLowerCase(),
 		});
-
+		console.log(user);
 		if (user) throw new Error("Email already exists");
 
 		user = await req.db.users.insertOne({
