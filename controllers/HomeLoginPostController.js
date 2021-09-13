@@ -12,17 +12,15 @@ module.exports = async function HomeLoginPostController(req, res) {
 
 		if (!user) throw new Error("User not found");
 
-		const isTrust = await compareHash(data.password, user.password);
-
+		const isTrust = await compareHash(data.password,user.password );
+// console.log(isTrust)
 
 		if (!isTrust) throw new Error("Password is incorrect");
 
 		const token = await createToken({
-			id: user._id,
+			user_id: user._id,
 		});
-		if(!req.cookies.token) {
-			res.redirect("/");
-		}
+		
 		let profile = await req.db.usersinfo.insertOne({
 			email: data.email,
 		});

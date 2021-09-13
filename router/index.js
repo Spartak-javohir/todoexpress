@@ -2,7 +2,7 @@ const ProfileController = require("../controllers/profileController")
 const router = require("express").Router();
 const AuthUserMiddleware = require("../controllers/AuthUserMiddleware")
 
-router.get("/profile", AuthUserMiddleware, async (req, res)=>{
+router.get("/profile",  async (req, res)=>{
 	let data = req.db.users.name
 	res.render("index",{
 		data

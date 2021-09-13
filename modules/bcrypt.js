@@ -7,7 +7,7 @@ async function generateCrypt(data) {
 }
 
 async function compareHash(data, hash) {
-	return compareSync(data, hash);
+	return compareSync(data,hash);
 }
 
 module.exports = {
