@@ -1,5 +1,5 @@
 const HomeLoginPostController = require("../controllers/HomeLoginPostController");
-
+const {compareHash} = require("../modules/bcrypt")
 const router = require("express").Router();
 
 router.get(["/", "/login.html"], (req, res) => {
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 		return;
 	}
 
-	if (!(await compareCrypt(users.password, password))) {
+	if (!(await compareHash(users.password, password))) {
 		res.render("/", {
 			error: "Password is incorrect",
 		});
