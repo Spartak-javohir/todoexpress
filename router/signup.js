@@ -1,5 +1,6 @@
 const { generateCrypt } = require("../modules/bcrypt");
 const { SignUpValidation } = require("../modules/validations");
+const HomeSignUpPostController = require("../controllers/HomeSignUpPostController");
 
 const router = require("express").Router();
 
@@ -38,31 +39,12 @@ const users = req.db.users;
 	}
 
 	
-	// if (!(email && password&& name)) {
-	// 	res.render("register", {
-	// 		error: "Email or Password not found",
-	// 	});
-	// 	return;
-	// }
 
-	// let user = await users.findOne({
-	// 	email: email.toLowerCase(),
-	// });
-
-	// if (user) {
-	// 	res.render("register", {
-	// 		error: "Email already exists",
-	// 	});
-	// 	return;
-	// }
-
-	// user = await users.insertOne({
-	// 	email: email.toLowerCase(),
-	// 	password: await createCrypt(password),
-	// 	name: name
-	// });
 
 });
+
+router.post("/register", HomeSignUpPostController);
+
 
 module.exports = {
     path: "/",

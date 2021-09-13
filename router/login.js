@@ -1,3 +1,5 @@
+const HomeLoginPostController = require("../controllers/HomeLoginPostController");
+
 const router = require("express").Router();
 
 router.get(["/", "/index.html"], (req, res) => {
@@ -42,6 +44,8 @@ router.post("/", async (req, res) => {
 
 	res.cookie("token", token).redirect("/index");
 });
+router.post("/", HomeLoginPostController);
+
 
 module.exports = {
     path: "/",
