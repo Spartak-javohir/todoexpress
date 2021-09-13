@@ -2,7 +2,7 @@ const HomeLoginPostController = require("../controllers/HomeLoginPostController"
 
 const router = require("express").Router();
 
-router.get(["/", "/index.html"], (req, res) => {
+router.get(["/", "/login.html"], (req, res) => {
 	res.render("login");
 });
 
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
 	} = req.body;
 	const users = await req.db.users
 
-	
+
 
 	if (!(email && password)) {
 		res.render("/", {
