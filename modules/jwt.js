@@ -1,6 +1,6 @@
 const { sign, verify } = require("jsonwebtoken");
 
-const SECRET_WORD = process.env.SECRET_WORD;
+const SECRET_WORD = 'secretparol';
 
 async function createToken(data) {
 	return sign(data, SECRET_WORD, {
@@ -20,3 +20,4 @@ module.exports = {
 	validateToken,
 	createToken,
 };
+// process.env.SECRET_WORD
