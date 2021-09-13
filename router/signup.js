@@ -6,7 +6,7 @@ const router = require("express").Router();
 router.get("/register", (req, res) => {
 	res.render("register");
 });
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
 	
 	const {
 		email,
@@ -15,10 +15,9 @@ router.post("/", async (req, res) => {
 	} = req.body; 
 
 const users = req.db.users;
-
 	try {
 	const user = await SignUpValidation.validateAsync(req.body)
-	
+
 		
 	const data = await users.findOne({email: user.email})
 
@@ -29,12 +28,13 @@ const users = req.db.users;
 			...user,
 			password: await generateCrypt(user.password)
 		})
+	res.redirect("/");
 
 		
 	}
 	} catch (error) {
 		console.log(error)
-		res.render("/", {error})
+		res.render("register", {error})
 	}
 
 	
@@ -62,7 +62,6 @@ const users = req.db.users;
 	// 	name: name
 	// });
 
-	// res.redirect("/");
 });
 
 module.exports = {
