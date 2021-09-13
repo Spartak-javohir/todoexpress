@@ -21,7 +21,7 @@ module.exports = async function HomeLoginPostController(req, res) {
 			id: user._id,
 		});
 
-		user = await req.db.usersinfo.insertOne({
+		let profile = await req.db.usersinfo.insertOne({
 			email: data.email,
 		});
 
