@@ -8,10 +8,7 @@ router.get("/profile", AuthUserMiddleware, async (req, res)=>{
 		data
 	})
 
-	const { user_id } = req.user 
-    let userInfo = await req.db.users.findOne(
-        { _id: ObjectId(user_id)}
-     ) 
+	
 })
 router.post("/profile", ProfileController)
 
