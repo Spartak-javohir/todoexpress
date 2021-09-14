@@ -28,8 +28,8 @@
           <li class="d-felx w-100 item row">
             <p class="text my-2 col-4"><%=el.todotext%></p>
           <time class="text-info my-2 col-4"><%=el.time%></time>
-          <button class="ok btn col-2 my-2  btn-success" >ok</button>
-          <button class="delete btn col-2 my-2  btn-danger">delete</button>
+          <button class="ok btn col-2 my-2  btn-success" type="submit" >ok</button>
+          <button class="delete btn col-2 my-2  btn-danger" type="submit" >delete</button>
           </li>
          
           <%})%>
@@ -51,14 +51,10 @@
           const item = e.target
           console.log(item.classList[0]);
           if(item.classList[0]==='delete'){
-           await fetch("/delet",{
-              method: 'POST',
-              itemcredentials: 'same-origin',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: item
-            })
+           let text = item.classList[0]
+          }
+          if(item.classList[0]==="ok"){
+            itemelem.classList.toggle('bg-warning')
           }
 
         }
