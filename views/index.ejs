@@ -25,7 +25,7 @@
         <ul class="border rounded border-warning d-flex row justify-content-between p-2 mx-auto" id="b" style="width: 38rem; list-style: none;">
           <%todotexts.forEach( (el, index)=>{%>
             
-          <li class="d-felx w-100 item row">
+          <li class="d-felx item row">
             <p class="text my-2 col-4"><%=el.todotext%></p>
           <time class="text-info my-2 col-4"><%=el.time%></time>
           <button class="ok btn col-2 my-2  btn-success" type="submit" >ok</button>
@@ -49,9 +49,9 @@
 
         async function delet(e){
           const item = e.target
-          console.log(item.classList[0]);
           if(item.classList[0]==='delete'){
-           let text = item.classList[0]
+           let text = item.parrent
+           console.log(text);
           }
           if(item.classList[0]==="ok"){
             itemelem.classList.toggle('bg-warning')
