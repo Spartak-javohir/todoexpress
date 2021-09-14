@@ -55,8 +55,8 @@ router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
 		_id: ObjectId(user_id)
 
 	})
-	let text = info.findOne({todotext:req.params.todotext})
-	console.log(text);
+	// let text = await info.findOne({todotext:req.params.todotext})
+	console.log(info.todotext);
 	// req.db.users.deleteOne(todotext)
 	// let text = await req.db.users.findIndex(e=>{
 	// 	e.todotext=req.params.todotext
