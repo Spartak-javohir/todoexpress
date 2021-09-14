@@ -35,8 +35,7 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 						$each: [{
 							
 							todotext: req.body.todotext,
-							time: new Date().toLocaleString()
-						}]
+							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),					}]
 					}
 				}
 			})
@@ -49,13 +48,21 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			});
 		}
 })
-router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
-	const {user_id} =req.user
-	let info = await req.db.users.findOne({
-		todotexts: req.params.todotext
+router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
+	let tekst = req.params.time
+	// let tek = await req.db.users.findOne({
+	// 	todotexts
 
-	})
-	let todotexts = info.todotext||[]
+	// })
+	let data = await req.db.users.find().toArray()
+	data.forEach(e => {
+		
+		for (let i of e.todotext){
+			if(i.time===tekst){
+				console.log(i.todotext);
+			}
+		}
+	});
 	
 
 	// let text = await info.findOne({todotext:req.params.todotext})
