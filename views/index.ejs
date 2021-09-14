@@ -24,10 +24,11 @@
         <%var todotexts;%>
         <div class="border rounded border-warning d-flex row justify-content-between p-2 mx-auto" style="width: 38rem;">
           <%for (let i of todotexts) {%>
-            <%let id = todotexts%>
-          <p class="text my-2 col-6"><%=i.todotext%></p>
+            
+          <p class="text my-2 col-4"><%=i.todotext%></p>
           <time class="text-info my-2 col-4"><%=i.time%></time>
-          <button id="delete" class="btn my-2 delete btn-danger col-2">delete</button>
+          <button class="btn col-2 ok my-2  btn-success">ok</button>
+          <button id=`${todotexts.length+1}` class="btn my-2 delete btn-danger col-2">delete</button>
           
         
           
@@ -35,8 +36,9 @@
         </section>
         <script>
           const deleteBtnElem = document.querySelector(".delete")
+          const okBtnElem = document.querySelector(".ok")
           deleteBtnElem.addEventListener("click", (e)=>{
-            console.log(e.id);
+            console.log(e.index);
           })
         </script>
       </div>

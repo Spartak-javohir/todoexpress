@@ -9,8 +9,8 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 	let info = await req.db.users.findOne({
 		_id: ObjectId(user_id)
 
-	})
-	let todotexts = info.todotext
+	})||[]
+	let todotexts = info.todotext||[]
 	let time = info.time
 	let name = info.name
 
@@ -33,6 +33,7 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 				$push:{
 					todotext: {
 						$each: [{
+							
 							todotext: req.body.todotext,
 							time: new Date().toLocaleString()
 						}]
