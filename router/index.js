@@ -52,11 +52,14 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
 	const {user_id} =req.user
 	let info = await req.db.users.findOne({
-		_id: ObjectId(user_id)
+		todotexts: req.params.todotext
 
 	})
+	let todotexts = info.todotext||[]
+	
+
 	// let text = await info.findOne({todotext:req.params.todotext})
-	console.log(info.todotext);
+	// console.log(todotexts.findOne({todotext: req.params.todotext}));
 	// req.db.users.deleteOne(todotext)
 	// let text = await req.db.users.findIndex(e=>{
 	// 	e.todotext=req.params.todotext
