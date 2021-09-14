@@ -1,6 +1,6 @@
 const { compareHash } = require("../modules/bcrypt");
 const { LoginValidation } = require("../modules/validations");
-const { createToken } = require("../modules/jwt");
+const { createToken, validateToken } = require("../modules/jwt");
 
 module.exports = async function HomeLoginPostController(req, res) {
 	try {
@@ -13,7 +13,6 @@ module.exports = async function HomeLoginPostController(req, res) {
 		if (!user) throw new Error("User not found");
 
 		const isTrust = await compareHash(data.password,user.password );
-// console.log(isTrust)
 
 		if (!isTrust) throw new Error("Password is incorrect");
 
@@ -21,11 +20,12 @@ module.exports = async function HomeLoginPostController(req, res) {
 			user_id: user._id,
 		});
 		
-		let profile = await req.db.usersinfo.insertOne({
-			email: data.email,
-		});
 
-		res.cookie("token", token).redirect("/profile");
+		res.cookie("token", token).redirect("/");
+		const c = await validateToken(token)
+		console.log(c);
+
+		
 	} catch (error) {
 		console.log(error);
 		res.render("login", {
