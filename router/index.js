@@ -49,9 +49,21 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			});
 		}
 })
-router.get('/delete',AuthUserMiddleware, async(req, res)=>{
+router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
+	const {user_id} =req.user
+	let info = await req.db.users.findOne({
+		_id: ObjectId(user_id)
 
-	console.log(req.body)
+	})
+	let text = info.findOne({todotext:req.params.todotext})
+	console.log(text);
+	// req.db.users.deleteOne(todotext)
+	// let text = await req.db.users.findIndex(e=>{
+	// 	e.todotext=req.params.todotext
+	// })
+	// req.db.users.updateOne(text)
+
+	res.redirect("/profile")
 
 })
 
