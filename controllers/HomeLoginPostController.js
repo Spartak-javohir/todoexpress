@@ -5,10 +5,13 @@ const { createToken, validateToken } = require("../modules/jwt");
 module.exports = async function HomeLoginPostController(req, res) {
 	try {
 		const data = await LoginValidation.validateAsync(req.body);
-
+		if (req.cookies.token) {
+			res.redirect('/profile')
+		}
 		const user = await req.db.users.findOne({
 			email: data.email,
 		});
+		
 
 		if (!user) throw new Error("User not found");
 
