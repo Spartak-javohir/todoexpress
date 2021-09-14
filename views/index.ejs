@@ -28,8 +28,8 @@
           <li class="d-felx w-100 item row">
             <p class="text my-2 col-4"><%=el.todotext%></p>
           <time class="text-info my-2 col-4"><%=el.time%></time>
-          <button class="btn col-2 delete my-2  btn-success" >ok</button>
-          <button class="btn col-2 delete my-2  btn-danger">delete</button>
+          <button class="ok btn col-2 my-2  btn-success" >ok</button>
+          <button class="delete btn col-2 my-2  btn-danger">delete</button>
           </li>
          
           <%})%>
@@ -44,14 +44,16 @@
         const deleteBtnElem = document.querySelectorAll(".delete")
         const okBtnElem = document.querySelectorAll(".ok")
         const ulElem = document.querySelector("#b")
-        const item = document.querySelector(".item")
+        const itemelem = document.querySelector(".item")
         ulElem.addEventListener("click", delet)
 
         function delet(e){
           const item = e.target
-          console.log(item);
+          console.log(item.classList[0]);
           if(item.classList[0]==='delete'){
-            item.remove();
+            fetch("/delet",{
+              item
+            })
           }
 
         }
