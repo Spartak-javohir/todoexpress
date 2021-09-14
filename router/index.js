@@ -49,9 +49,9 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			});
 		}
 })
-router.post('/delete',AuthUserMiddleware, async(req, res)=>{
+router.get('/delete',AuthUserMiddleware, async(req, res)=>{
 
-	console.log(req.body.text)
+	console.log(req.body)
 
 })
 
