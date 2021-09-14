@@ -26,7 +26,7 @@
           <%todotexts.forEach( (el, index)=>{%>
             
           <li class="d-felx justify-content-between align-items-center item row">
-            <%=el.todotext%>
+            <p class="text col-5"><%=el.todotext%></p>
             <div class="d-felx my-2 justify-content-between align-items-center item col-6 row">
               <time class="temi text-info col-2"><%=el.time%></time>
               <button class="ok btn col-2  btn-success" type="submit" >ok</button>
@@ -54,8 +54,8 @@
           if(item.classList[0]==='delete'){
            let div = item.parentElement
            let father = div.parentElement
-           
-           let text = father.innerText
+           let p = father.childNodes
+           let text = p[1].innerText
 
            let response = await fetch('/article/fetch/post/user', {
               method: 'POST',
@@ -66,14 +66,12 @@
             })           
           }
           if(item.classList[0]==="ok"){
+            
            let text = item.parentElement
            let father = text.parentElement
 
             father.classList.toggle('bg-warning')
-            if(true){}
-            let time = text.childNodes[1]
-            console.log(time.innerText.slice(3, 6))
-            alert
+           
           }
 
         }
