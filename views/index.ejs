@@ -47,12 +47,17 @@
         const itemelem = document.querySelector(".item")
         ulElem.addEventListener("click", delet)
 
-        function delet(e){
+        async function delet(e){
           const item = e.target
           console.log(item.classList[0]);
           if(item.classList[0]==='delete'){
-            fetch("/delet",{
-              item
+           await fetch("/delet",{
+              method: 'POST',
+              itemcredentials: 'same-origin',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: item
             })
           }
 

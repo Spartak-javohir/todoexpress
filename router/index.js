@@ -49,7 +49,9 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			});
 		}
 })
+// router.post('/delete', async(req, res)
 
+// )
 
 
 module.exports = {
