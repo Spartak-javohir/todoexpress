@@ -21,9 +21,12 @@
     </section>
     <section>
       <div class="container">
-        <div class="card p-2 mx-auto" style="width: 38rem;">
-          
-          <p><%name%></p>
+        <div class="card d-flex jus p-2 mx-auto" style="width: 38rem;">
+          <%for (let i of todotexts) {%>
+          <p><%=i.todotext%></p>
+          <time><%=i.time%></time>
+          <button>delete</button>
+          <%}%>
          
       </div>
       </div>
