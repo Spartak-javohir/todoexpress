@@ -23,11 +23,18 @@
       <div class="container ">
         <div class="border rounded border-warning d-flex row justify-content-between p-2 mx-auto" style="width: 38rem;">
           <%for (let i of todotexts) {%>
+            <%let id = todotexts%>
           <p class="text my-2 col-6"><%=i.todotext%></p>
           <time class="text-info my-2 col-4"><%=i.time%></time>
-          <button class="btn my-2 btn-danger col-2">delete</button>
+          <button id="delete" class="btn my-2 delete btn-danger col-2">delete</button>
           <%}%>
          
       </div>
       </div>
     </section>
+    <script>
+      const deleteBtnElem = document.querySelector(".delete")
+      deleteBtnElem.addEventListener("click", (e)=>{
+        console.log(e.id);
+      })
+    </script>
