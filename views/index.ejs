@@ -28,7 +28,7 @@
           <li class="d-felx justify-content-between align-items-center item row">
             <%=el.todotext%>
             <div class="d-felx my-2 justify-content-between align-items-center item col-6 row">
-              <time class="text-info col-2"><%=el.time%></time>
+              <time class="temi text-info col-2"><%=el.time%></time>
               <button class="ok btn col-2  btn-success" type="submit" >ok</button>
               <button class="delete btn col-2 btn-danger" type="submit" >del</button>    
             </div>
@@ -70,6 +70,10 @@
            let father = text.parentElement
 
             father.classList.toggle('bg-warning')
+            if(true){}
+            let time = text.childNodes[1]
+            console.log(time.innerText.slice(3, 6))
+            alert
           }
 
         }
