@@ -1,3 +1,5 @@
+// require("dotenv").config();
+
 const express = require("express");
 const server = express();
 const PORT = process.env.PORT || 8888;
@@ -14,6 +16,7 @@ server.listen(PORT, () => {
 
 // Middlewares
 server.use(express.json());
+server.use(cookieParser());
 server.use(
 	express.urlencoded({
 		extended: true,

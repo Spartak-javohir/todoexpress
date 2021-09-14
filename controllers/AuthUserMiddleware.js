@@ -3,11 +3,10 @@ const {validateToken} = require('../modules/jwt')
 
 module.exports= async function AuthUserMiddleware(req, res, next) {
 	
-	if (res.Cookies) {
+	if (!req.cookies.token) {
 		next()
 	}else{
-
-	const isTrust = validateToken(req.cookies);
+	const isTrust = await validateToken(req.cookies.token);
 		
 	if (!isTrust) {		
 		next();
