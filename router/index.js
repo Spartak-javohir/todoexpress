@@ -10,14 +10,12 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 		_id: ObjectId(user_id)
 
 	})
-	console.log(user_id);
+	console.log(req.db.users);
 	let todotexts = info.todotext||[]
-	let time = info.time
 	let name = info.name
 
 	res.render("index",{
 		todotexts,
-		time,
 		name,
 		
 	})
