@@ -24,10 +24,11 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 })
 router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 	try {
-		const {user_id} =req.user
-			
+		const {email} =req.body
+			console.log(email);
+		await req.db.usersinfo.findOne({})
 		await req.db.usersinfo.updateOne({
-				_id: ObjectId(user_id)
+				email: email
 			},{
 				
 				$push:{
