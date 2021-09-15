@@ -26,14 +26,20 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 	try {
 		const {user_id} =req.user
 			
-		await req.db.users.updateOne({
+		await req.db.usersinfo.updateOne({
 				_id: ObjectId(user_id)
 			},{
+				
 				$push:{
-					todotext: {
+					todotexts: {
 						$each: [{
 							todotext: req.body.todotext,
+						}]
+					},
+					times:{
+						$each: [{
 							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
+
 						}]
 					}
 				}
@@ -54,8 +60,9 @@ router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
 	data.forEach(e => {
 		
 		for (let i of e.todotext){
-			let del = req.db.users.findOne({todotext:[{ time: i.tim}]})	
-			console.log(del);
+			req.db.users.update( { "todotext" : "gkn" }, { $pull: { "time": tekst}} );
+			// let del = req.db.users.updateOne({$pull:{todotext:[{ time: i.tim}]}})	
+			// console.log( JSON.stringify(del));
 					
 		}
 	});
