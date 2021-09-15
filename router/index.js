@@ -30,7 +30,7 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 
 		})
 		let email = info.email
-		
+		console.log(info.email);
 
 		let data = await req.db.usersinfo.updateOne({
 				email: email,
