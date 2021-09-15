@@ -31,10 +31,11 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			},{
 				$push:{
 					todotext: {
-						$each: [{
+						$each: {
 							
 							todotext: req.body.todotext,
-							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),					}]
+							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
+						}
 					}
 				}
 			})
@@ -54,14 +55,9 @@ router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
 	data.forEach(e => {
 		
 		for (let i of e.todotext){
-			function filterad(num){
-				
-			}
-			if(i.time==tekst){
-				
-				req.db.users.deleteOne(i.time)	
-			}
-			e.todotext.filter(filterad)
+			let del = req.db.users.findOne({todotext:{ time: i.tim}})	
+			console.log(del);
+					
 		}
 	});
 
