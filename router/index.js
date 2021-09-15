@@ -35,7 +35,7 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 
 		})
 		let email = info.email
-		console.log(info.email);
+		
 
 		let data = await req.db.usersinfo.updateOne({
 				email: email,
@@ -48,14 +48,7 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 						
 					},
 				},
-				// $push:{
-					// times:{
-						
-					// 		time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
-
-						
-					// },
-				// },
+				
 			})
 			await
 			res.redirect('/profile')
@@ -67,19 +60,28 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			});
 		}
 })
-router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
-	let tekst = req.params.time.split(' ')
+router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
+	let tekst = req.params.todotext
+	
 	const {user_id} =req.user
 	let info = await req.db.users.findOne({
 		_id: ObjectId(user_id)
 
 	})
-	let email = info._id
-	let data = await req.db.users.find({email:email}).toArray()
-	data.forEach(e => {
+	let email = info.email
+	let data = await req.db.usersinfo.find({email:email}).toArray()
+	
 		
-		console.log(e);
-	});
+		req.db.usersinfo.updateOne({
+			email: email,
+		},{
+			$pull:{
+				todotexts:{
+					todotext: tekst,
+				}
+			}
+		});
+	
 
 	res.redirect("/profile")
 
