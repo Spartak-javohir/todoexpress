@@ -10,7 +10,6 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 		_id: ObjectId(user_id)
 
 	})
-	console.log(req.db.users);
 	let todotexts = info.todotext||[]
 	let name = info.name
 
@@ -49,17 +48,16 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 		}
 })
 router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
-	let tekst = req.params.time
-	// let tek = await req.db.users.findOne({
-	// 	todotexts
-	console.log(tekst);
-	// })
+	let tekst = req.params.time.split(' ')
+	let raqam = tekst.toString()
 	let data = await req.db.users.find().toArray()
 	data.forEach(e => {
 		
 		for (let i of e.todotext){
-			if(i.time===tekst){
-				console.log(i.todotext);
+			i.time.filter()
+			if(i.time!=tekst){
+				console.log();
+				
 			}
 		}
 	});
