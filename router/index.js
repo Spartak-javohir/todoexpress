@@ -49,16 +49,19 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 })
 router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
 	let tekst = req.params.time.split(' ')
-	let raqam = tekst.toString()
+
 	let data = await req.db.users.find().toArray()
 	data.forEach(e => {
 		
 		for (let i of e.todotext){
-			i.time.filter()
-			if(i.time!=tekst){
-				console.log();
+			function filterad(num){
 				
 			}
+			if(i.time==tekst){
+				
+				req.db.users.deleteOne(i.time)	
+			}
+			e.todotext.filter(filterad)
 		}
 	});
 	
