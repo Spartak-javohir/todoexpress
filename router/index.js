@@ -31,11 +31,11 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 			},{
 				$push:{
 					todotext: {
-						$each: {
-							
-							todotext: req.body.todotext,
-							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
-						}
+						
+						id: todatext.length+1	,	
+						todotext: req.body.todotext,
+						time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
+						
 					}
 				}
 			})
