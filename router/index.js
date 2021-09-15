@@ -17,6 +17,7 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 	res.render("index",{
 		todotexts,
 		name,
+
 		
 	})
 
