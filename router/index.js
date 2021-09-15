@@ -6,6 +6,7 @@ const { ObjectId } = require("bson");
 
 router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 	const {user_id} =req.user
+	console.log(user_id);
 	let info = await req.db.users.findOne({
 		_id: ObjectId(user_id)
 
