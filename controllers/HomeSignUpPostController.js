@@ -17,6 +17,7 @@ module.exports = async function HomeSignUpPostController(req, res) {
 		});
 		req.db.usersinfo.insertOne({
 			email: req.body.email,
+			todotext: [],
 		})
 
 		res.redirect("/");

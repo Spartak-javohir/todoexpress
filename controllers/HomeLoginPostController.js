@@ -6,8 +6,7 @@ const { ObjectId } = require("bson");
 
 module.exports = async function HomeLoginPostController(req, res) {
 	try {
-		let info_id = req.user
-
+		
 		const data = await LoginValidation.validateAsync(req.body);
 		if (req.cookies.token) {
 			res.redirect('/profile')
@@ -25,7 +24,7 @@ module.exports = async function HomeLoginPostController(req, res) {
 		if (!isTrust) throw new Error("Password is incorrect");
 
 		const token = await createToken({
-			user_id: user._id,
+			user_id: user.email,
 		});
 		
 		

@@ -24,29 +24,37 @@ router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 })
 router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 	try {
-		const {email} =req.body
-			console.log(email);
-		await req.db.usersinfo.findOne({})
-		await req.db.usersinfo.updateOne({
-				email: email
+		const {user_id} =req.user
+		let info = await req.db.users.findOne({
+			_id: ObjectId(user_id)
+
+		})
+		let email = info.email
+		
+
+		let data = await req.db.usersinfo.updateOne({
+				email: email,
 			},{
 				
 				$push:{
 					todotexts: {
-						$each: [{
-							todotext: req.body.todotext,
-						}]
+						
+						todotext: req.body.todotext,
+						
 					},
-					times:{
-						$each: [{
-							time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
+				},
+				// $push:{
+					// times:{
+						
+					// 		time: new Date().getHours().toLocaleString()+':'+ new Date().getMinutes().toLocaleString()+":"+new Date().getSeconds().toLocaleString(),
 
-						}]
-					},
-				}
+						
+					// },
+				// },
 			})
 			await
 			res.redirect('/profile')
+			return
 			
 		} catch (error) {
 			res.render("index", {
@@ -56,16 +64,16 @@ router.post("/profile",AuthUserMiddleware, async (req, res)=>{
 })
 router.get('/delete/:time',AuthUserMiddleware, async(req, res)=>{
 	let tekst = req.params.time.split(' ')
+	const {user_id} =req.user
+	let info = await req.db.users.findOne({
+		_id: ObjectId(user_id)
 
-	let data = await req.db.users.find().toArray()
+	})
+	let email = info._id
+	let data = await req.db.users.find({email:email}).toArray()
 	data.forEach(e => {
 		
-		for (let i of e.todotext){
-			req.db.users.update( { "todotext" : "gkn" }, { $pull: { "time": tekst}} );
-			// let del = req.db.users.updateOne({$pull:{todotext:[{ time: i.tim}]}})	
-			// console.log( JSON.stringify(del));
-					
-		}
+		console.log(e);
 	});
 
 	res.redirect("/profile")
