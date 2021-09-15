@@ -24,7 +24,7 @@ module.exports = async function HomeLoginPostController(req, res) {
 		if (!isTrust) throw new Error("Password is incorrect");
 
 		const token = await createToken({
-			user_id: user.email,
+			user_id: user._id,
 		});
 		
 		
