@@ -2,8 +2,10 @@
 
 module.exports = async function LogOutController (req, res){
     try {
-        req.cookei
+        console.log(req.claerCookie);
 
+
+        res.redirect("/")
 
     } catch (error) {
         console.log(error);
