@@ -5,11 +5,15 @@
             <div class="card p-2 mx-auto" style="width: 38rem;">
                 <%var name%>
                 <ul class="list-group list-group-flush">
-                  <li class=" my-1 text-center list-group-item">To Do List</li>
+                  <li class=" my-1 text-center list-group-item">
+                    <p class="text">To Do List</p>
+                    <a href="/logout">log out</a>
+                  </li>
                   <li class=" my-1 text-center list-group-item">
                     <h1>
                       <%=name%>
                     </h1>
+                    
                   </li>
                   <form class="d-flex flex-column" method="POST" action="">
                     <input class="my-1 input outline-danger" name="todotext" required placeholder="To Do text" type="text">

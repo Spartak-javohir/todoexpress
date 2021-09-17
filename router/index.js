@@ -2,7 +2,7 @@
 const router = require("express").Router();
 const AuthUserMiddleware = require("../controllers/AuthUserMiddleware")
 const { ObjectId } = require("bson");
-
+const {v4}= require("uuid")
 
 router.get("/profile",AuthUserMiddleware, async (req, res)=>{
 	const {user_id} =req.user
@@ -77,6 +77,7 @@ router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
 		},{
 			$pull:{
 				todotexts:{
+					id: v4(),
 					todotext: tekst,
 				}
 			}
@@ -86,6 +87,8 @@ router.get('/delete/:todotext',AuthUserMiddleware, async(req, res)=>{
 	res.redirect("/profile")
 
 })
+
+
 
 
 module.exports = {
